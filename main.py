@@ -1,10 +1,14 @@
+from scipy.integrate import odeint
 import numpy as np
-from scipy import optimize
 import matplotlib.pyplot as plt
 
-def f(x):
-    return x**2 + 10*np.sin(x)
+def cal_deriv(ypos, time):
+	return -2 * ypos
 
-x = np.arange(-10,10,0.1)
-plt.plot(x, f(x))
+time_vec = np.linspace(0,4,40)
+y = odeint(cal_deriv, y0=1, t=time_vec)
+
+plt.plot(time_vec, y)
 plt.show()
+
+
